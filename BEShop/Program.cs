@@ -12,7 +12,7 @@ namespace BEShop
         public static void Main(string[] args)
         {
             Thread.Sleep(10000);
-
+            Console.WriteLine("ABOBA");
             var builder = WebApplication.CreateBuilder(args);
 
             builder.Services.AddRazorComponents()
@@ -34,6 +34,7 @@ namespace BEShop
                 .AddInteractiveServerRenderMode();
 
             app.Run();
+            Console.WriteLine("ABOBA");
         }
     }
     public class CommentService

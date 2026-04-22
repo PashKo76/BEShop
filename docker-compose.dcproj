@@ -9,10 +9,10 @@
     <DockerServiceName>beshop</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="compose.override.yml">
-      <DependentUpon>compose.yml</DependentUpon>
+    <None Include="docker-compose.override.yml">
+      <DependentUpon>docker-compose.yml</DependentUpon>
     </None>
-    <None Include="compose.yml" />
+    <None Include="docker-compose.yml" />
     <None Include=".dockerignore" />
   </ItemGroup>
 </Project>

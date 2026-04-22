@@ -3,9 +3,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_HTTP_PORTS=8080
-      - ASPNETCORE_HTTPS_PORTS=8081
       - OPENAI_API_KEY=sk-Yq4XDCkGpotqlIyRAesbGw
       - OPENAI_BASE_URL=https://kurim.ithope.eu/v1
     ports:
       - "8080"
-      - "8081"

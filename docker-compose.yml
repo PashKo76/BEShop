@@ -5,15 +5,14 @@ services:
       context: .
       dockerfile: BEShop/Dockerfile
     depends_on:
-      - database
-  database:
-    image: postgres:15
-    container_name: DATABASE
+      - postgresbase
+  postgresbase:
+    image: postgres:latest
     environment:
+     - POSTGRES_DB=EShop
      - POSTGRES_USER=postgres
      - POSTGRES_PASSWORD=password
-     - POSTGRES_DB=EShop
      - POSTGRES_HOST_AUTH_METHOD=trust
-     - PGDATA=/data/pgdata
+     # - PGDATA=/data/pgdata
     ports:
-     - "5432:5432"
+     - 4020:5432

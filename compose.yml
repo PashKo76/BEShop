@@ -7,7 +7,7 @@ services:
     depends_on:
       - postgresbase
   postgresbase:
-    image: postgres:latest
+    image: postgres:15
     environment:
      - POSTGRES_DB=EShop
      - POSTGRES_USER=postgres

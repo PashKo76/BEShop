@@ -1,0 +1,18 @@
+services:
+  beshop:
+    image: ${DOCKER_REGISTRY-}beshop
+    build:
+      context: .
+      dockerfile: BEShop/Dockerfile
+    depends_on:
+      - database
+  database:
+    image: postgres:latest
+    container_name: DATABASE
+    environment:
+     - POSTGRES_USER=postgres
+     - POSTGRES_PASSWORD=password
+     - POSTGRES_DB=EShop
+     - POSTGRES_HOST_AUTH_METHOD=trust
+    ports:
+     - "5432:5432"

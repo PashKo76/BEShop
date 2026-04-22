@@ -1,0 +1,22 @@
+﻿@page "/product/{Id:int}"
+@inject EshopContext DB
+@inject NavigationManager Navigation
+<div>
+	<h1>@Me?.Name</h1>
+	<p>@Me?.ShortDesc</p>
+	<p>@Me?.Desc</p>
+	<p><a href="/review/@Id">Add feedback</a></p>
+	<p>@Me?.CommentFromAi</p>
+</div>
+@code {
+	[Parameter]
+	public int Id { get; set; }
+	Product? Me = null;
+	protected override void OnInitialized()
+	{
+		var res = from prod in DB.Products where prod.Id == Id select prod;
+		if (res.Count() == 0) Navigation.NavigateTo("/");
+		Me = res.First();
+		if (Me == null) Navigation.NavigateTo("/");
+	}
+}

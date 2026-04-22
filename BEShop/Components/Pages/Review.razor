@@ -1,0 +1,40 @@
+﻿@page "/review/{ProdId:int}"
+@inject EshopContext DB
+@inject NavigationManager Navigation
+@inject CommentService Ai
+<div>
+	<p>I am writing about this <a href="/product/{@ProdId}">product</a> and I am fully aware about AI moderation</p>
+	<EditForm Model="this" OnSubmit="Send">
+		<p><InputTextArea @bind-value="text"/></p>
+		<button type="submit">Send!</button>
+	</EditForm>
+</div>
+@code {
+	[Parameter]
+	public int ProdId { get; set; }
+	string? text = null;
+	void Send()
+	{
+		if (text == null || text.IsWhiteSpace()) return;
+		var res = from prod in DB.Products where prod.Id == ProdId select prod;
+		Navigation.NavigateTo("/");
+		if (res.Count() == 0) return;
+
+		DB.Comments.Add(new Comment() { Data = text, ProductId = ProdId });
+		DB.SaveChanges();
+
+		var coms = from comm in DB.Comments where comm.ProductId == ProdId select comm;
+
+		string resp = Ai.AiResponce((from text in coms select text.Data).ToArray());
+
+		var f = (from prod in DB.Products where prod.Id == ProdId select prod).First();
+
+		if(f != null)
+		{
+			f.CommentFromAi = resp;
+			DB.SaveChanges();
+		}
+
+	}
+	
+}

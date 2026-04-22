@@ -1,0 +1,33 @@
+﻿@page "/"
+@inject EshopContext DB
+<div class="box dark">
+	<EditForm Model="this" OnSubmit="Find">
+		<p>Contains: <InputText @bind-Value="keyWord" /></p>
+		<button type="submit">I fell lucky!</button>
+	</EditForm>
+	@if (products != null)
+	{
+		<p>@products.Count() matches</p>
+		@foreach (var p in products)
+		{
+			<div>
+				<h2><a href="/product/@p.Id">@p.Name</a></h2>
+				<h3>@p.Price</h3>
+				<h4>@p.ShortDesc</h4>
+			</div>
+		}
+	}
+	else
+	{
+		<p>Add some keywords</p>
+	}
+</div>
+@code{
+	string keyWord = "";
+	List<Product> products = new List<Product>();
+	void Find()
+	{
+		products = DB.Products.Where((p) => (p.ShortDesc == null || p.Ammount <= 0) ? false : p.ShortDesc.Contains(keyWord)).ToList();
+	}
+
+}

@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="BEShop/BEShop.csproj" />
+  <Project Path="docker-compose.dcproj">
+    <Build />
+  </Project>
+</Solution>

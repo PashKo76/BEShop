@@ -7,7 +7,7 @@ services:
     depends_on:
       - database
   database:
-    image: postgres:latest
+    image: postgres:15
     container_name: DATABASE
     environment:
      - POSTGRES_USER=postgres

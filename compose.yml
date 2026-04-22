@@ -14,5 +14,6 @@ services:
      - POSTGRES_PASSWORD=password
      - POSTGRES_DB=EShop
      - POSTGRES_HOST_AUTH_METHOD=trust
+     - PGDATA=/data/pgdata
     ports:
      - "5432:5432"

@@ -1,9 +1,14 @@
 services:
   beshop:
     image: ${DOCKER_REGISTRY-}beshop
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=5000
     build:
       context: .
       dockerfile: BEShop/Dockerfile
+    ports:
+      - "5000"
     depends_on:
       - postgresbase
   postgresbase:

@@ -32,7 +32,7 @@ namespace BEShop
             app.MapStaticAssets();
             app.MapRazorComponents<App>()
                 .AddInteractiveServerRenderMode();
-
+            app.Urls.Add("http://0.0.0.0:5000");
             app.Run();
             Console.WriteLine("ABOBA");
         }
